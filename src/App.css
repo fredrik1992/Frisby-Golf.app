@@ -1,28 +1,55 @@
-.App {
-  text-align: center;
+.page{
+  display: grid;
+  grid-template-columns: 100% 100% ;
+  grid-template-rows: auto auto ;
+  grid-template-areas: 
+  "head "
+  "main ";
+  height: 550px;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
-}
 
-.App-header {
-  background-color: #222;
+.header{
+  grid-area: head;
+  display: flex;
+  background-color: aqua;
   height: 150px;
-  padding: 20px;
-  color: white;
+  justify-content: center;
+  margin: 2%;
+  
+}
+.main{
+  grid-area: main;
+  background-color: blueviolet;
+  height: 550px;
+  margin: 2%;
 }
 
-.App-title {
-  font-size: 1.5em;
+.sideWindowMain{
+  border: solid black;
+  height: 90%;
+  width: 30%;
+  background-color: brown;
+  margin: 3%;
 }
-
-.App-intro {
-  font-size: large;
+.nameAndCourseWindow{
+  
+  display: flex;
+  flex-direction: row;
+  
+  width: 100%;
+  height: 60%;
 }
-
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+.courseWindow{
+  border: solid black;
+  height: 90%;
+  width: 60%;
+  background-color: yellow;
+  margin: 3%;
+}
+.TotalScoreWindow{
+  border: solid black;
+  background-color: aqua;
+  width: 100%;
+  height: 10%;
 }
