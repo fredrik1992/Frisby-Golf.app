@@ -7,10 +7,10 @@ class App extends Component {
   render() {
     return (
       <div className="page">
-        
+        <div className="pageWindow">
         <HeaderComp></HeaderComp>
         <AppMainComp></AppMainComp>
-        
+        </div>
       </div>
     );
   }
