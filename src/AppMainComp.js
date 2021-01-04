@@ -6,6 +6,7 @@ import CourseWindowComp from "../src/MainComps/CourseWindowComp";
 import BestTotalScoreComp from "./MainComps/BestTotalScoreComp";
 
 const AppMainComp = () => {
+  let playerNameToScore;
   const [selectedCourseDate, setSelectedCourseDate] = useState([
     {
       laneNum: "1",
@@ -131,6 +132,20 @@ const AppMainComp = () => {
     }
     
   ])
+  const [currentScore,setCurrentScore] = useState([])
+
+  function addToCurrentScore(lane,score){
+
+    
+    setCurrentScore (function(prevstate){
+      return[...prevstate,{
+        lane:lane,
+        name:playerNameToScore,
+        score:score
+      }]
+    })
+    console.log(currentScore)
+  }
 
   function addToCoursesToDisplay(index) {
     setcoursesToDisplay(function (prevState) {
@@ -144,10 +159,16 @@ const AppMainComp = () => {
     });
   }
 
+  function playerToGiveScore (nameOfPlayer){
+    
+    playerNameToScore = nameOfPlayer;
+
+  }
+
   function changePage() {
     setcoursesToDisplay({});
     incresesIndexInDisplayedPages();
-    let pageHolder = indexToRemember.page++;
+    
     let index = indexToRemember.indexToStartAt + 3;
     let indexEndHolder = indexToRemember.indexToStopAt + 3;
     for (index; index < indexEndHolder; index++) {
@@ -164,16 +185,20 @@ const AppMainComp = () => {
       };
     });
   }
-
+function test (){
+  console.log(currentScore)
+}
   
   return (
     <div className="main">
+      <button onClick = {test}>test</button>
       <div className="nameAndCourseWindow">
       <div className="sideWindowMain"> 
       <div className = "playerBox">
       {playerNames.map(function(player){
           return(
             <NameWindowComp
+            playerToGiveScore ={playerToGiveScore}
             name = {player.player}></NameWindowComp>
           )
         })}
@@ -191,6 +216,8 @@ const AppMainComp = () => {
               if (coursesToDisplay != undefined) {
                 return (
                   <CourseWindowComp
+                    scoreData = {currentScore}
+                    addToCurrentScore = {addToCurrentScore}
                     par={coursesToDisplay.par}
                     lane={coursesToDisplay.laneNum}
                   ></CourseWindowComp>

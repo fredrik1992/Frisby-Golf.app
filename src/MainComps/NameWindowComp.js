@@ -4,19 +4,23 @@ import "./MainCompsCss/NameWindowComp.css";
 const NameWindowComp = (props) => {
   let shortNameToUse;
   shortenName();
+  
   function shortenName() {
     let nameArray = props.name.split("");
-
     let firstLetter = nameArray[0];
     let lastLetter = nameArray.pop();
 
     shortNameToUse = firstLetter + lastLetter;
   }
-  console.log(shortNameToUse);
+  function sendNameToScore (){
+    console.log("in send name")
+    props.playerToGiveScore(shortNameToUse)
+  }
+  
   return (
-    <div className="sideWindowNamesBox">
+    <button onClick ={sendNameToScore} className="sideWindowNamesBox">
       <p className="names">{shortNameToUse}</p>
-    </div>
+    </button>
   );
 };
 export default NameWindowComp;
