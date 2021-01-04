@@ -1,23 +1,21 @@
-import React from "react";
+import React, { useState } from "react";
 import "./MainCompsCss/NameWindowComp.css";
 
-const NameWindowComp = () => {
+const NameWindowComp = (props) => {
+  let shortNameToUse;
+  shortenName();
+  function shortenName() {
+    let nameArray = props.name.split("");
+
+    let firstLetter = nameArray[0];
+    let lastLetter = nameArray.pop();
+
+    shortNameToUse = firstLetter + lastLetter;
+  }
+  console.log(shortNameToUse);
   return (
-    <div className="sideWindowMain">
-      <div className = "playerBox">
-        <div className="sideWindowNamesBox">
-          <p className="names">Fg</p>
-        </div>
-        <div className="sideWindowNamesBox">
-          <p className="names">Lg</p>
-        </div>
-        <div className="sideWindowNamesBox">
-          <p className="names">Sp</p>
-        </div>
-        <div className="sideWindowNamesBox">
-          <p className="names">Dr</p>
-        </div>
-      </div>
+    <div className="sideWindowNamesBox">
+      <p className="names">{shortNameToUse}</p>
     </div>
   );
 };
