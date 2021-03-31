@@ -8,92 +8,17 @@ import BestTotalScoreComp from "./MainComps/BestTotalScoreComp";
 const AppMainComp = () => {
   let playerNameToScore;
   const [selectedCourseDate, setSelectedCourseDate] = useState([
-    {
-      laneNum: "1",
-      par: "3",
-    },
-    {
-      laneNum: "2",
-      par: "3",
-    },
-    {
-      laneNum: "3",
-      par: "3",
-    },
-    {
-      laneNum: "4",
-      par: "3",
-    },
-    {
-      laneNum: "5",
-      par: "3",
-    },
-    {
-      laneNum: "6",
-      par: "3",
-    },
-    {
-      laneNum: "7",
-      par: "4",
-    },
-    {
-      laneNum: "8",
-      par: "4",
-    },
-    {
-      laneNum: "9",
-      par: "3",
-    },
-    {
-      laneNum: "10",
-      par: "4",
-    },
-    {
-      laneNum: "11",
-      par: "3",
-    },
-    {
-      laneNum: "12",
-      par: "3",
-    },
-    {
-      laneNum: "13",
-      par: "3",
-    },
-    {
-      laneNum: "14",
-      par: "4",
-    },
-    {
-      laneNum: "15",
-      par: "3",
-    },
-    {
-      laneNum: "16",
-      par: "4",
-    },
-    {
-      laneNum: "17",
-      par: "3",
-    },
-    {
-      laneNum: "18",
-      par: "3",
-    },
+    {laneNum: "1", par: "3",},{laneNum: "2", par: "3",},{laneNum: "3",par: "3",},
+    {laneNum: "4", par: "3",},{laneNum: "5",par: "3",},{laneNum: "6",par: "3",},
+    {laneNum: "7", par: "4",},{laneNum: "8",par: "4",},{laneNum: "9",par: "3",},
+    {laneNum: "10",par: "4",},{laneNum: "11",par: "3",},{laneNum: "12",par: "3",},
+    {laneNum: "13",par: "3",},{laneNum: "14",par: "4",},{laneNum: "15",par: "3",},
+    {laneNum: "16",par: "4",},{laneNum: "17",par: "3",},{laneNum: "18",par: "3",},
   ]);
   const [coursesToDisplay, setcoursesToDisplay] = useState([
-    {
-      laneNum: selectedCourseDate[0].laneNum,
-      par: selectedCourseDate[0].par,
-    },
-    {
-      laneNum: selectedCourseDate[1].laneNum,
-      par: selectedCourseDate[1].par,
-    },
-    {
-      laneNum: selectedCourseDate[2].laneNum,
-      par: selectedCourseDate[2].par,
-    },
+    {laneNum: selectedCourseDate[0].laneNum,par: selectedCourseDate[0].par,},
+    {laneNum: selectedCourseDate[1].laneNum,par: selectedCourseDate[1].par,},
+    {laneNum: selectedCourseDate[2].laneNum,par: selectedCourseDate[2].par,},
   ]);
 
   const [indexToRemember, setindexToRemember] = useState({
@@ -103,37 +28,13 @@ const AppMainComp = () => {
   });
 
   const [playerNames,setPlayernames] = useState([
-    {
-      player:"Fredrik"
-    },
-    {
-      player:"Linus"
-    },
-    {
-      player:"Sebbe"
-    },
-    {
-      player:"David"
-    },
-    {
-      player:"Emil"
-    },
-    {
-      player:"Kevin"
-    },
-    {
-      player:"Nicklas"
-    },
-    {
-      player:"Kevin"
-    },
-    {
-      player:"Nicklas"
-    }
+    {player:"Fredrik"},{player:"Linus"},{player:"Sebbe"},{player:"David"},
+    {player:"Emil"},{player:"Kevin"},{player:"Nicklas"},{player:"Kevin"},
+    {player:"Nicklas"}
     
   ])
   const [currentScore,setCurrentScore] = useState([])
-
+  
   function addToCurrentScore(lane,score){
 
     
@@ -165,16 +66,64 @@ const AppMainComp = () => {
 
   }
 
-  function changePage() {
-    setcoursesToDisplay({});
-    incresesIndexInDisplayedPages();
+  function changePageForward() {
+
+    console.log(indexToRemember.indexToStopAt) + "before if";
     
-    let index = indexToRemember.indexToStartAt + 3;
-    let indexEndHolder = indexToRemember.indexToStopAt + 3;
-    for (index; index < indexEndHolder; index++) {
-      addToCoursesToDisplay(index);
+    
+    if (indexToRemember.indexToStopAt  >=selectedCourseDate.length){
+      console.log("in indextoremeber")
+      //need to set page change to disabled
+     
+      document.getElementById("pageForward").style.disabled;
+
+      
+    }else{
+      setcoursesToDisplay({});
+      incresesIndexInDisplayedPages();
+      
+      let index = indexToRemember.indexToStartAt + 3;
+      let indexEndHolder = indexToRemember.indexToStopAt + 3;
+      for (index; index < indexEndHolder; index++) {
+        addToCoursesToDisplay(index);
+      }
     }
+    
+    
+    //set a control on length of course if index to stop at is higer or equal to it you cant increse it
+    
   }
+
+  function changePageBackwards() {
+
+    console.log(indexToRemember.indexToStopAt) + "before if";
+    
+    
+    if (indexToRemember.indexToStopAYO  >=selectedCourseDate.length){
+      console.log("in indextoremeber")
+      //need to set page change to disabled
+     
+      document.getElementById("pageForward").style.disabled;
+
+      
+    }else{
+      setcoursesToDisplay({});
+      incresesIndexInDisplayedPages();
+      
+      let index = indexToRemember.indexToStartAt + 3;
+      let indexEndHolder = indexToRemember.indexToStopAt + 3;
+      for (index; index < indexEndHolder; index++) {
+        addToCoursesToDisplay(index);
+      }
+    }
+    
+    
+    //set a control on length of course if index to stop at is higer or equal to it you cant increse it
+    
+  
+
+
+  
 
   function incresesIndexInDisplayedPages() {
     setindexToRemember(function () {
@@ -187,6 +136,12 @@ const AppMainComp = () => {
   }
 function test (){
   console.log(currentScore)
+  setCurrentScore(function (prevState) {
+    return [
+      ...prevState,
+      
+    ];
+  });
 }
   
   return (
@@ -216,6 +171,7 @@ function test (){
               if (coursesToDisplay != undefined) {
                 return (
                   <CourseWindowComp
+                    test = {test}
                     scoreData = {currentScore}
                     addToCurrentScore = {addToCurrentScore}
                     par={coursesToDisplay.par}
@@ -225,7 +181,7 @@ function test (){
               }
             })}
 
-            <button className="nextPageButton" onClick={changePage}>
+            <button id = "pageForward"className="nextPageButton" onClick={changePageForward}>
               change
             </button>
           </div>

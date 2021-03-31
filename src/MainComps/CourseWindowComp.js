@@ -2,21 +2,21 @@ import React from "react";
 import { useState } from "react";
 import "./MainCompsCss/CourseWindowComp.css";
 const CourseWindowComp = (props) => {
+ let score;
+ let name = "fg"
  
 
   const [showPointWindow, setshowPointWindow] = useState([
-    {
-      show: false,
-    },
+    {show: false,},
+  ]);
+  const [nameOfPlayer, setNameOfPlayer] = useState([
+    
   ]);
   function sendDataToScore() {
-    setshowPointWindow([
-      {
-        show: true,
-      },
-    ]);
+    setshowPointWindow([{show: true,},]);
     Score();
   }
+  
   function setScoreFromChoice(scoreNum) {
     
     props.addToCurrentScore(props.lane, scoreNum);
@@ -51,6 +51,15 @@ const CourseWindowComp = (props) => {
           <button classname="pontAsignerItems" onClick={() => setScoreFromChoice(6)}>
             6
           </button>
+          <button classname="pontAsignerItems" onClick={() => setScoreFromChoice(7)}>
+            7
+          </button>
+          <button classname="pontAsignerItems" onClick={() => setScoreFromChoice(8)}>
+            8
+          </button>
+          <button classname="pontAsignerItems" onClick={() => setScoreFromChoice(9)}>
+            9
+          </button>
           <button onClick={closeScore}>x</button>
         </div>
       );
@@ -64,6 +73,20 @@ const CourseWindowComp = (props) => {
     ]);
     Score();
   }
+  function changeExistingScore (){
+    console.log(props.scoreData)
+    props.scoreData.map(function(savedScores){
+      if (savedScores.name == name){
+        console.log(props.scoreData)
+        console.log("in if")
+        savedScores.score = 4;
+      }
+      console.log(props.scoreData)
+    })
+    props.test()
+    score  = 4
+  }
+  
 
   return (
     <div className="laneWindow">
@@ -78,10 +101,13 @@ const CourseWindowComp = (props) => {
         </div>
         {props.scoreData.map(function (scoreData) {
           if (scoreData.lane == props.lane) {
+            console.log(scoreData.score)
+            score = scoreData.score
+            
             return (
-              <div className="courseLanesItems">
+              <button onClick = {changeExistingScore} className="courseLanesItems">
                 {scoreData.name}:{scoreData.score}
-              </div>
+              </button>
             );
           }
         })}
